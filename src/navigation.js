@@ -3,7 +3,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Feather } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -23,7 +23,7 @@ const CartIcon = () => {
       onPress={() => navigation.navigate('Cart')}
       style={styles.cartIcon}
     >
-      <Feather name="shopping-cart" size={22} color="black" />
+      <FontAwesome5 name="shopping-cart" size={18} color="gray" />
       {count > 0 && (
         <View style={styles.badge}>
           <Text style={styles.badgeText}>{count}</Text>
@@ -43,9 +43,12 @@ const Navigation = () => {
           options={{ headerRight: () => <CartIcon /> }}
         />
         <Stack.Screen
-          name="Product Details"
+          name="Product Detail"
           component={ProductDetailsScreen}
-          options={{ headerRight: () => <CartIcon /> }}
+          options={{
+            presentation: 'fullScreenModal',
+            headerRight: () => <CartIcon />,
+          }}
         />
         <Stack.Screen name="Cart" component={ShoppingCart} />
       </Stack.Navigator>
